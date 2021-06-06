@@ -5,7 +5,7 @@ import '../animalItem.dart';
 class FirstApp extends StatelessWidget {
   final List<Animal> list;
 
-  FirstApp({required Key key, required this.list}) : super(key: key);
+  FirstApp({required this.list}) : super();
 
   @override
   Widget build(BuildContext context) {
