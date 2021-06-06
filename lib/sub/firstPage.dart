@@ -10,8 +10,24 @@ class FirstApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Center(child: ListView.builder(itemBuilder: (context, position) {
-      return Card();
-    })));
+        body: Center(
+            child: ListView.builder(
+      itemBuilder: (context, position) {
+        return Card(
+          child: Row(
+            children: [
+              Image.asset(
+                list[position].imagePath,
+                height: 100,
+                width: 100,
+                fit: BoxFit.contain,
+              ),
+              Text(list[position].animalName)
+            ],
+          ),
+        );
+      },
+      itemCount: list.length,
+    )));
   }
 }
