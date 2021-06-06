@@ -70,7 +70,41 @@ class _SecondAppState extends State<SecondApp> {
           ),
           RaisedButton(
             child: Text('동물 추가하기'),
-            onPressed: () {},
+            onPressed: () {
+              var animal = Animal(
+                animalName: nameController.value.text,
+                kind: _getKind(_radioValue),
+                imagePath: _imagePath,
+                flyExist: _flyExist,
+              );
+              AlertDialog dialog = AlertDialog(
+                title: Text('동물 추가하기'),
+                content: Text(
+                  '이 동물은 ${animal.animalName} 입니다. '
+                  '또 이 동물의 종류는 ${animal.kind} 입니다. \n이 동물을 추가하시겠습니까?',
+                  style: TextStyle(fontSize: 30.0, color: Colors.black),
+                ),
+                actions: [
+                  RaisedButton(
+                    onPressed: () {
+                      widget.list.add(animal);
+                      Navigator.of(context).pop();
+                    },
+                    child: Text('예'),
+                  ),
+                  RaisedButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: Text('아니오'),
+                  ),
+                ],
+              );
+              showDialog(
+                context: context,
+                builder: (BuildContext context) => dialog,
+              );
+            },
           )
         ],
       ),
@@ -98,5 +132,18 @@ class _SecondAppState extends State<SecondApp> {
     setState(() {
       _radioValue = value != null ? value : 0;
     });
+  }
+
+  String _getKind(int radioValue) {
+    switch (radioValue) {
+      case 0:
+        return "양서류";
+      case 1:
+        return "파충류";
+      case 2:
+        return "포유류";
+      default:
+        throw new Exception('Undefined radioValue. radioValue: $radioValue');
+    }
   }
 }
