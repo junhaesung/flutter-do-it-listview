@@ -13,7 +13,7 @@ class FirstApp extends StatelessWidget {
         body: Center(
             child: ListView.builder(
       itemBuilder: (context, position) {
-        return Card(
+        var card = Card(
           child: Row(
             children: [
               Image.asset(
@@ -26,6 +26,19 @@ class FirstApp extends StatelessWidget {
             ],
           ),
         );
+        return GestureDetector(
+            child: card,
+            onTap: () {
+              AlertDialog dialog = AlertDialog(
+                content: Text('이 동물은 ${list[position].kind} 입니다'),
+                contentTextStyle:
+                    TextStyle(fontSize: 30.0, color: Colors.black),
+              );
+              showDialog(
+                context: context,
+                builder: (BuildContext context) => dialog,
+              );
+            });
       },
       itemCount: list.length,
     )));
