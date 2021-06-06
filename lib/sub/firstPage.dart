@@ -9,6 +9,9 @@ class FirstApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: Center(child: Text('첫 번째 페이지')));
+    return Scaffold(
+        body: Center(child: ListView.builder(itemBuilder: (context, position) {
+      return Card();
+    })));
   }
 }
